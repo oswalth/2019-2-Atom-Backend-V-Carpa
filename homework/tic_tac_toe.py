@@ -21,10 +21,8 @@ class TicTacToe():
                 pass
             else:
                 return('ValueError. Please, reenter position - ')
-                return
         else:
             return('ValueError. Please, reenter position - ')
-            return
         has_appeared = self.check_identity(position)
         if has_appeared:
             return has_appeared
