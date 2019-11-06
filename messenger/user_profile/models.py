@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):
-    avatar = models.CharField(max_length=128)
+    avatar = models.CharField(max_length=128, verbose_name='Ссылка на аватар')
 
     def __str__(self):
         return(' '.join([self.first_name, self.last_name]))
@@ -18,14 +18,21 @@ class User(AbstractUser):
 
 
 class Member(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True,
+        verbose_name='Пользователь')
     chat = models.ForeignKey(
         'chats.Chat',
         on_delete=models.CASCADE,
-        null=True)
+        null=True, verbose_name='Чат')
     # new_messages =
     last_read_message = models.ForeignKey(
-        'chats.Message', on_delete=models.SET_NULL, null=True)
+        'chats.Message',
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='Последнее прочитанное сообщение')
 
     class Meta:
         verbose_name = 'Участник чата'

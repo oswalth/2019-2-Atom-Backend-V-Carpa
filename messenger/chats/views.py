@@ -50,7 +50,7 @@ def create_chat(request):
     return render_to_response('new_chat.html', {'form': form, 'form2': form2},)
 
 
-def list_chats(request, pk=None):
+def user_chats(request, pk=None):
     if request.method in ('GET', 'POST'):
         if pk is None:
             return JsonResponse({'msg': 'specify user id'})
@@ -69,3 +69,16 @@ def list_chats(request, pk=None):
             }
         return JsonResponse(response)
     return JsonResponse({'test': 'Wrong method {}'.format(request.method)})
+
+
+def list_chats(request):
+    response = dict()
+    chats = Chat.objects.all()
+    for chat in chats:
+            response['chat#{}'.format(chat.id)] = {
+                'title': chat.title,
+                'is_group': chat.is_group_chat,
+                'topic': chat.topic or 'No topic',
+                'host': chat.host.username,
+            }
+    return JsonResponse(response)
