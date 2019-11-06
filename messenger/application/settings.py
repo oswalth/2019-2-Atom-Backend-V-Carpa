@@ -29,7 +29,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = 'user_profile.User'
 # Application definition
 
 INSTALLED_APPS = [

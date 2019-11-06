@@ -2,3 +2,5 @@
 *.pyc
 *.swo
 *.swp
+*config.py
+sample

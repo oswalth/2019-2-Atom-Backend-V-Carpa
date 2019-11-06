@@ -16,12 +16,27 @@ class Chat(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     # last_message =
 
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Чат'
+        verbose_name_plural = 'Чаты'
+
 
 class Message(models.Model):
     chat = models.ForeignKey(Chat, on_delete=models.SET_NULL, null=True)
     sender = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     content = models.TextField()
     added_at = models.DateTimeField(default=timezone.now())
+
+    def __str__(self):
+        return '{} at {}'.format(self.content, self.added_at)
+
+    class Meta():
+        ordering = ('-added_at',)
+        verbose_name = 'Сообщение'
+        verbose_name_plural = 'Сообщения'
 
 
 class Attachment(models.Model):
@@ -30,3 +45,11 @@ class Attachment(models.Model):
     message = models.ForeignKey(Message, on_delete=models.SET_NULL, null=True)
     attachment_type = models.CharField(max_length=16, blank=False)
     url = models.CharField(max_length=128)
+
+    def __str__(self):
+        return '{} from {}'.format(self.attachment_type, self.url)
+        
+    class Meta():
+        ordering = ('chat',)
+        verbose_name = 'Вложение'
+        verbose_name_plural = 'Вложения'
