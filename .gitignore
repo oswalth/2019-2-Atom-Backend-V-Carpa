@@ -4,3 +4,7 @@
 *.swp
 *config.py
 sample
+.vscode
+.pytest_cache
+local_settings.py
+
