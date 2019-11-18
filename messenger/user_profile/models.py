@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):
-    avatar = models.CharField(max_length=128, verbose_name='Ссылка на аватар')
+    avatar = models.ImageField(upload_to='images/', null=True, verbose_name='Аватар')
 
     def __str__(self):
         return(' '.join([self.first_name, self.last_name]))
