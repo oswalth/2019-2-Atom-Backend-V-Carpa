@@ -15,7 +15,12 @@ class Chat(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         verbose_name='Создатель чата')
-    # last_message =
+    last_message = models.ForeignKey(
+        'Message',
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='Последнее сообщение',
+        related_name='+')
 
     def __str__(self):
         return self.title

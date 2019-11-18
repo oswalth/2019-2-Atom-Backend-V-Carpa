@@ -14,7 +14,8 @@ def fill_messages():
         content = 'from usr{} to {}'.format(user_id, reciever)
         chat = Chat.objects.get(id=chat_id)
         sender = User.objects.get(id=user_id)
-        message = Message.objects.create(chat=chat, sender=sender, content=content)
+        message = Message.objects.create(
+            chat=chat, sender=sender, content=content)
 
 
 def fill_users():
@@ -25,7 +26,11 @@ def fill_users():
     for name, nick in infos:
         first_name = name.split()[0]
         last_name = name.split()[1]
-        usr = User.objects.create(username=nick, last_name=last_name, first_name=first_name, avatar='tmp_url')
+        usr = User.objects.create(
+            username=nick,
+            last_name=last_name,
+            first_name=first_name,
+            avatar='tmp_url')
 
 
 def fill_chats():
@@ -52,7 +57,8 @@ def fill_members():
     for user_id, chat_id in members:
         user = User.objects.get(id=user_id)
         chat = Chat.objects.get(id=chat_id)
-        member = Member.objects.create(user=user, chat=chat, last_read_message=None)
+        member = Member.objects.create(
+            user=user, chat=chat, last_read_message=None)
 
 
 def fill_attachemnets():
@@ -75,7 +81,9 @@ def fill_attachemnets():
 
 
 fill_users()
+"""
 fill_chats()
 fill_members()
 fill_messages()
 fill_attachemnets()
+"""
