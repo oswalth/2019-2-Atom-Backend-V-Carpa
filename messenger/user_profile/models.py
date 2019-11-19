@@ -4,9 +4,13 @@ from django.contrib.auth.models import AbstractUser
 # from chats.models import Chats, Message
 
 
-# Create your models here.
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'users/{0}/{1}'.format(instance.username, filename)
+
+
 class User(AbstractUser):
-    avatar = models.ImageField(upload_to='images/', null=True, verbose_name='Аватар')
+    avatar = models.ImageField(upload_to=user_directory_path, null=True, verbose_name='Аватар')
 
     def __str__(self):
         return(' '.join([self.first_name, self.last_name]))

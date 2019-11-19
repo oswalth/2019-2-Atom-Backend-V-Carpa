@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from application.config import database_conf
+from application.config import database_conf, AWS
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -112,11 +112,20 @@ USE_L10N = True
 
 USE_TZ = True
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_S3_ENDPOINT_URL = AWS['AWS_S3_ENDPOINT_URL']
+AWS_ACCESS_KEY_ID = AWS['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = AWS['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = AWS['AWS_STORAGE_BUCKET_NAME']
+AWS_DEFAULT_ACL = None
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = '/home/oswalth/atom/backend/messenger/media/'
 
 try:
     from .local_settings import *

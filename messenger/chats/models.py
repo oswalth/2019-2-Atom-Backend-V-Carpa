@@ -21,6 +21,7 @@ class Chat(models.Model):
         null=True,
         verbose_name='Последнее сообщение',
         related_name='+')
+    
 
     def __str__(self):
         return self.title
