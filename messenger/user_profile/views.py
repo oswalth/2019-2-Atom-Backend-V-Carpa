@@ -15,6 +15,7 @@ def user_profile(request, pk=None):
     if pk is None:
         return JsonResponse({'msg': 'enter user id'})
     else:
+        print((request.path))
         user = get_object_or_404(User, username=pk)
         return render(request, 'user_profile.html', {
             'name': user.__str__(),

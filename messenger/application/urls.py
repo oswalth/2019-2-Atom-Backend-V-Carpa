@@ -20,7 +20,7 @@ from . import views
 
 urlpatterns = [
     path('', include('templates.urls')),
-    path('file/<path>', views.redirect_test),
+    path('file/<path>/<filename>', views.download_file),
     path('admin/', admin.site.urls),
     path('chats/', include('chats.urls')),
     path('contacts/', include('contact_list.urls')),

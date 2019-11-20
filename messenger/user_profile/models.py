@@ -6,11 +6,11 @@ from django.contrib.auth.models import AbstractUser
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'users/{0}/{1}'.format(instance.username, filename)
+    return 'users/{0}/{1}'.format(instance.username, 'avatar')
 
 
 class User(AbstractUser):
-    avatar = models.ImageField(upload_to=user_directory_path, null=True, verbose_name='Аватар')
+    avatar = models.ImageField(name='avatar', upload_to=user_directory_path, null=True, verbose_name='Аватар')
 
     def __str__(self):
         return(' '.join([self.first_name, self.last_name]))
