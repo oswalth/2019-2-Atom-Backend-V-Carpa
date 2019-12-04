@@ -28,11 +28,14 @@ class Member(models.Model):
         User,
         on_delete=models.CASCADE,
         null=True,
-        verbose_name='Пользователь')
+        verbose_name='Пользователь',
+        related_name='membership')
     chat = models.ForeignKey(
         'chats.Chat',
         on_delete=models.CASCADE,
-        null=True, verbose_name='Чат')
+        null=True, 
+        verbose_name='Чат',
+        related_name='membership')
     # new_messages =
     last_read_message = models.ForeignKey(
         'message.Message',

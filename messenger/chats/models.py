@@ -1,5 +1,5 @@
 from django.db import models
-from user_profile.models import User
+from user_profile.models import User, Member
 from django.utils import timezone
 
 
@@ -10,6 +10,7 @@ class Chat(models.Model):
         default='Unnamed Chat', verbose_name='Название чата')
     is_group_chat = models.BooleanField(verbose_name='Групповой')
     topic = models.CharField(max_length=128, verbose_name='Тема чата')
+    members = models.ManyToManyField(User, through=Member, related_name='chat_members')
     host = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
